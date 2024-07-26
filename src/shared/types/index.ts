@@ -8,3 +8,13 @@ export interface NavItem {
   label?: string;
   description?: string;
 }
+
+interface Pagination<T> {
+  total: number;
+  page: number;
+  pageSize: number;
+  pageCount: number;
+  hasPreviousPage: boolean;
+  hasNextPage: boolean;
+  data: Array<T>;
+}

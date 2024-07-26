@@ -9,12 +9,12 @@ const shellVariants = cva('grid items-center gap-8 pb-8 pt-6 lg:py-6', {
       default: 'container',
       sidebar: '',
       centered: 'container flex h-dvh max-w-2xl flex-col justify-center',
-      markdown: 'container max-w-3xl py-8 md:py-10'
-    }
+      markdown: 'container max-w-3xl py-8 md:py-10',
+    },
   },
   defaultVariants: {
-    variant: 'default'
-  }
+    variant: 'default',
+  },
 });
 
 type ShellProps = React.ComponentProps<'div'> &
@@ -22,8 +22,15 @@ type ShellProps = React.ComponentProps<'div'> &
     as?: React.ElementType;
   };
 
-function Shell({ className, as: Comp = 'section', variant, ...props }: ShellProps) {
-  return <Comp className={cn(shellVariants({ variant }), className)} {...props} />;
+function Shell({
+  className,
+  as: Comp = 'section',
+  variant,
+  ...props
+}: ShellProps) {
+  return (
+    <Comp className={cn(shellVariants({ variant }), className)} {...props} />
+  );
 }
 
 export { Shell, shellVariants };

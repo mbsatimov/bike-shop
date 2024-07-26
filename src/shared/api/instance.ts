@@ -3,7 +3,13 @@ export class HttpClient {
 
   headers?: Record<string, string>;
 
-  constructor({ baseURL, headers }: { baseURL: string; headers?: Record<string, string> }) {
+  constructor({
+    baseURL,
+    headers,
+  }: {
+    baseURL: string;
+    headers?: Record<string, string>;
+  }) {
     this.baseURL = baseURL;
     this.headers = headers;
   }
@@ -20,15 +26,15 @@ export class HttpClient {
       ...options,
       headers: {
         ...this.headers,
-        ...options.headers
-      }
+        ...options.headers,
+      },
     });
 
     return {
       success: response.ok,
       status: response.status,
       statusText: response.statusText,
-      data: (response.json ? await response.json() : null) as T
+      data: (response.json ? await response.json() : null) as T,
     };
   }
 
@@ -43,7 +49,7 @@ export class HttpClient {
   ) {
     return this.request<T>(endpoint, 'POST', {
       ...options,
-      ...(body && { body: JSON.stringify(body) })
+      ...(body && { body: JSON.stringify(body) }),
     });
   }
 
@@ -54,7 +60,7 @@ export class HttpClient {
   ) {
     return this.request<T>(endpoint, 'PUT', {
       ...options,
-      ...(body && { body: JSON.stringify(body) })
+      ...(body && { body: JSON.stringify(body) }),
     });
   }
 
@@ -65,7 +71,7 @@ export class HttpClient {
   ) {
     return this.request<T>(endpoint, 'PATCH', {
       ...options,
-      ...(body && { body: JSON.stringify(body) })
+      ...(body && { body: JSON.stringify(body) }),
     });
   }
 
@@ -74,4 +80,6 @@ export class HttpClient {
   }
 }
 
-export const api = new HttpClient({ baseURL: process.env.NEXT_PUBLIC_API_URL as string });
+export const api = new HttpClient({
+  baseURL: process.env.NEXT_PUBLIC_API_URL as string,
+});

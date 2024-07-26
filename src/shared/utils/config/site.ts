@@ -5,12 +5,13 @@ const links = {
   repo: 'https://github.com/mbsatimov/bike-shop',
   github: 'https://github.com/mbsatimov',
   telegram: 'https://t.me/mbsatimov',
-  instagram: 'https://instagram.com/mbsatimov'
+  instagram: 'https://instagram.com/mbsatimov',
 };
 
 export const siteConfig = {
   name: 'Bikeshop',
-  description: 'An open source e-commerce bike-shop build with everything new in Next.js.',
+  description:
+    'An open source e-commerce bike-shop build with everything new in Next.js.',
   url: 'https://bike-shop.mbsatimov.com',
   ogImage: 'https://bike-shop.mbsatimov.com/opengraph-image.png',
   links,
@@ -21,9 +22,9 @@ export const siteConfig = {
         {
           title: 'shadcn/ui',
           href: 'https://ui.shadcn.com',
-          external: true
-        }
-      ]
+          external: true,
+        },
+      ],
     },
     {
       title: 'Help',
@@ -31,24 +32,24 @@ export const siteConfig = {
         {
           title: 'About',
           href: '/about',
-          external: false
+          external: false,
         },
         {
           title: 'Contact',
           href: '/contact',
-          external: false
+          external: false,
         },
         {
           title: 'Terms',
           href: '/terms',
-          external: false
+          external: false,
         },
         {
           title: 'Privacy',
           href: '/privacy',
-          external: false
-        }
-      ]
+          external: false,
+        },
+      ],
     },
     {
       title: 'Social',
@@ -56,24 +57,24 @@ export const siteConfig = {
         {
           title: 'X',
           href: links.x,
-          external: true
+          external: true,
         },
         {
           title: 'GitHub',
           href: links.github,
-          external: true
+          external: true,
         },
         {
           title: 'Telegram',
           href: links.telegram,
-          external: true
+          external: true,
         },
         {
           title: 'Instagram',
           href: links.instagram,
-          external: true
-        }
-      ]
-    }
-  ]
+          external: true,
+        },
+      ],
+    },
+  ],
 };
