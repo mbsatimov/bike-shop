@@ -1,6 +1,6 @@
 import type { ComponentProps } from 'react';
 
-import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui';
 
 type CatalogSheetProps = ComponentProps<typeof Popover> & {
   open?: boolean;

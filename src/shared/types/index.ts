@@ -1,20 +1,22 @@
+import { Icons } from '@/shared/ui';
+
 export interface NavItem {
   title: string;
   href?: string;
   active?: boolean;
   disabled?: boolean;
   external?: boolean;
-  // icon?: keyof typeof Icons;
+  icon?: keyof typeof Icons;
   label?: string;
   description?: string;
 }
 
-interface Pagination<T> {
-  total: number;
-  page: number;
-  pageSize: number;
-  pageCount: number;
-  hasPreviousPage: boolean;
-  hasNextPage: boolean;
-  data: Array<T>;
-}
+export type ApiResponse<T> = {
+  success: boolean;
+  data: T;
+  error?: string;
+};
+
+export type RequestConfig<Params = undefined> = Params extends undefined
+  ? { config?: RequestInit }
+  : { config?: RequestInit; params: Params };

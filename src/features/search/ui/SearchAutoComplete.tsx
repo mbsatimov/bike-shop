@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { AutoComplete } from '@/shared/ui/autocomplete';
+import { AutoComplete } from '@/shared/ui';
 
 export const SearchAutoComplete = () => {
   const [value, setValue] = useState<{ value: string; label: string }>({

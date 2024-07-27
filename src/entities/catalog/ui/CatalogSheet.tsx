@@ -1,6 +1,6 @@
+import Link from 'next/link';
 import type { ComponentProps } from 'react';
 import React from 'react';
-import Link from 'next/link';
 
 import {
   Sheet,
@@ -8,7 +8,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '@/shared/ui/sheet';
+} from '@/shared/ui';
 
 type CatalogSheetProps = ComponentProps<typeof Sheet> & {
   open?: boolean;

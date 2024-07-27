@@ -1,8 +1,8 @@
-import React from 'react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import React from 'react';
 
-import { Providers } from '@/app/providers';
+import { ThemeProvider } from '@/app/providers';
 import { cn } from '@/shared/utils';
 
 import '@/app/styles/globals.css';
@@ -21,7 +21,7 @@ export const RootLayout = ({
 }>) => (
   <html lang="en" suppressHydrationWarning>
     <body className={cn('min-h-screen', inter.className)}>
-      <Providers>{children}</Providers>
+      <ThemeProvider>{children}</ThemeProvider>
     </body>
   </html>
 );

@@ -1,22 +1,25 @@
 'use client';
 
-import * as React from 'react';
+import { Eye } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Eye } from 'lucide-react';
+import * as React from 'react';
 
-import { AspectRatio } from '@/shared/ui/aspect-ratio';
-import { buttonVariants } from '@/shared/ui/button';
+import { PUBLIC_ROUTES } from '@/shared/router';
 import {
+  AspectRatio,
+  buttonVariants,
   Card,
   CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/shared/ui/card';
-import { PlaceholderImage } from '@/shared/ui/placeholder-image';
+  PlaceholderImage,
+} from '@/shared/ui';
 import { cn, formatPrice } from '@/shared/utils';
+
+import { Product } from '..';
 
 interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
   product: Product;
@@ -35,7 +38,7 @@ export const ProductCard = ({
       className={cn('size-full overflow-hidden rounded-lg', className)}
       {...props}
     >
-      <Link aria-label={product.name} href={`/product/${product.id}`}>
+      <Link aria-label={product.name} href={PUBLIC_ROUTES.product(product.id)}>
         <CardHeader className="border-b p-0">
           <AspectRatio ratio={4 / 3}>
             {product.images?.length ? (
@@ -56,7 +59,7 @@ export const ProductCard = ({
         </CardHeader>
         <span className="sr-only">{product.name}</span>
       </Link>
-      <Link href={`/product/${product.id}`} tabIndex={-1}>
+      <Link href={PUBLIC_ROUTES.product(product.id)} tabIndex={-1}>
         <CardContent className="space-y-1.5 p-4">
           <CardTitle className="line-clamp-1">{product.name}</CardTitle>
           <CardDescription className="line-clamp-1">

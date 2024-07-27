@@ -1,7 +1,7 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
-export const cn = (...inputs: Array<ClassValue>) => twMerge(clsx(inputs));
+export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
 
 export const formatPrice = (
   price: number | string,
@@ -10,6 +10,6 @@ export const formatPrice = (
   new Intl.NumberFormat('uz-UZ', {
     style: 'currency',
     currency: opts.currency ?? 'UZS',
-    notation: opts.notation ?? 'compact',
+    notation: opts.notation ?? 'standard',
     ...opts,
   }).format(Number(price));

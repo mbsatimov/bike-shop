@@ -1,9 +1,11 @@
-import { useCallback } from 'react';
+'use client';
+
 import {
   usePathname,
   useRouter,
   useSearchParams as useNextSearchParams,
 } from 'next/navigation';
+import { useCallback } from 'react';
 
 export const useSearchParams = () => {
   const router = useRouter();
@@ -25,7 +27,7 @@ export const useSearchParams = () => {
   );
 
   const clearParams = useCallback(
-    (deleteParams?: Array<string>) => {
+    (deleteParams?: string[]) => {
       const params = new URLSearchParams(searchParams?.toString());
       if (deleteParams) {
         deleteParams.forEach(param => params.delete(param));

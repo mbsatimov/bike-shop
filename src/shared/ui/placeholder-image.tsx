@@ -1,5 +1,3 @@
-import { Slot } from '@radix-ui/react-slot';
-
 import { cn } from '@/shared/utils';
 
 import { AspectRatio } from './aspect-ratio';
@@ -12,19 +10,15 @@ interface PlaceholderImageProps
   asChild?: boolean;
 }
 
-export function PlaceholderImage({
+export const PlaceholderImage = ({
   isSkeleton = false,
-  asChild = false,
   className,
   ...props
-}: PlaceholderImageProps) {
-  const Comp = asChild ? Slot : AspectRatio;
-
+}: PlaceholderImageProps) => {
   return (
-    <Comp
-      ratio={16 / 9}
+    <div
       {...props}
-      className={cn('overflow-hidden rounded-lg', className)}
+      className={cn('size-full overflow-hidden rounded-lg', className)}
     >
       <Skeleton
         aria-label="Placeholder"
@@ -40,6 +34,6 @@ export function PlaceholderImage({
           aria-hidden="true"
         />
       </Skeleton>
-    </Comp>
+    </div>
   );
-}
+};

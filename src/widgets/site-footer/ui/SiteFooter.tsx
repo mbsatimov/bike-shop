@@ -1,16 +1,16 @@
 'use client';
 
-import * as React from 'react';
 import { MoonIcon, SunIcon } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import * as React from 'react';
 
-import { Button } from '@/shared/ui/button';
 import {
+  Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/shared/ui/dropdown-menu';
+} from '@/shared/ui';
 
 export const SiteFooter = () => {
   const { setTheme } = useTheme();

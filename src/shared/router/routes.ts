@@ -1,11 +1,11 @@
 export const PUBLIC_ROUTES = {
   home: '/',
   search: '/search',
-  shops: '/shops',
-  shopItem(id: string) {
-    return `/${this.shops}/${id}`;
+  stores: '/stores',
+  store(id: string | number) {
+    return `/stores/${id}`;
   },
-  productItem(id: string) {
+  product(id: string | number) {
     return `/products/${id}`;
   },
   cart: '/cart',

@@ -1,6 +1,8 @@
-import { type KeyboardEvent, useCallback, useRef, useState } from 'react';
+'use client';
+
 import { Command as CommandPrimitive } from 'cmdk';
 import { Check } from 'lucide-react';
+import { type KeyboardEvent, useCallback, useRef, useState } from 'react';
 
 import { cn } from '@/shared/utils';
 
@@ -11,7 +13,7 @@ import { Skeleton } from './skeleton';
 export type Option = Record<'value' | 'label', string> & Record<string, string>;
 
 type AutoCompleteProps = {
-  options: Array<Option>;
+  options: Option[];
   emptyMessage: string;
   value?: Option;
   onValueChange?: (value: Option) => void;
