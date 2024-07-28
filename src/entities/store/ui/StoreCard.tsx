@@ -11,16 +11,16 @@ import {
 
 import { Store } from '..';
 
-interface StoreCardProps {
+type Props = React.ComponentProps<typeof Link> & {
   store: Store;
   href: string;
-}
+};
 
-export const StoreCard = ({ store, href }: StoreCardProps) => {
+export const StoreCard = ({ store, href, ...props }: Props) => {
   const isUserStore = href.includes('dashboard');
 
   return (
-    <Link href={href}>
+    <Link href={href} {...props}>
       <Card className="relative h-full rounded-lg transition-colors hover:bg-muted/25">
         <CardHeader>
           <CardTitle className="line-clamp-1">{store.name}</CardTitle>
