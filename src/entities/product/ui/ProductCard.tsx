@@ -1,14 +1,9 @@
-'use client';
-
-import { Eye } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import * as React from 'react';
 
 import { PUBLIC_ROUTES } from '@/shared/router';
 import {
   AspectRatio,
-  buttonVariants,
   Card,
   CardContent,
   CardDescription,
@@ -21,18 +16,19 @@ import { cn, formatPrice } from '@/shared/utils';
 
 import { Product } from '..';
 
-interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
+type Props = React.ComponentProps<typeof Card> & {
   product: Product;
-  variant?: 'default' | 'switchable';
-  isAddedToCart?: boolean;
-  onSwitch?: () => Promise<void>;
-}
+  actionSlot?: React.ReactNode;
+  footerSlot?: React.ReactNode;
+};
 
 export const ProductCard = ({
+  actionSlot,
   product,
   className,
+  footerSlot,
   ...props
-}: ProductCardProps) => {
+}: Props) => {
   return (
     <Card
       className={cn('size-full overflow-hidden rounded-lg', className)}
@@ -67,24 +63,8 @@ export const ProductCard = ({
           </CardDescription>
         </CardContent>
       </Link>
-      <CardFooter className="p-4 pt-1">
-        <div className="flex w-full items-center space-x-2">
-          <Link
-            href={`/preview/product/${product.id}`}
-            title="Preview"
-            className={cn(
-              buttonVariants({
-                variant: 'secondary',
-                size: 'icon',
-                className: 'h-8 w-8 shrink-0',
-              })
-            )}
-          >
-            <Eye className="size-4" aria-hidden="true" />
-            <span className="sr-only">Preview</span>
-          </Link>
-        </div>
-      </CardFooter>
+      {footerSlot && <CardFooter className="p-4 pt-1">{footerSlot}</CardFooter>}
+      {actionSlot && <div className="absolute right-4 top-4">{actionSlot}</div>}
     </Card>
   );
 };

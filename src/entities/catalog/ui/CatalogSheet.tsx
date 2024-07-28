@@ -10,7 +10,7 @@ import {
   SheetTrigger,
 } from '@/shared/ui';
 
-type CatalogSheetProps = ComponentProps<typeof Sheet> & {
+type Props = ComponentProps<typeof Sheet> & {
   open?: boolean;
   setOpen?: () => void;
   children?: React.ReactNode;
@@ -23,7 +23,7 @@ export const CatalogSheet = ({
   children,
   options,
   ...props
-}: CatalogSheetProps) => {
+}: Props) => {
   return (
     <Sheet open={open} onOpenChange={setOpen} {...props}>
       {!!children && <SheetTrigger asChild>{children}</SheetTrigger>}

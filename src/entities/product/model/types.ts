@@ -1,10 +1,15 @@
+import { Store } from '@/entities/store';
+
+export interface ProductImage {
+  id: string;
+  name: string;
+  url: string;
+}
+
 export interface Product {
   id: string;
   name: string;
   price: number;
-  images?: {
-    id: string;
-    name: string;
-    url: string;
-  }[];
+  images?: ProductImage[];
+  store: Store;
 }

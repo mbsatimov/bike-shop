@@ -182,7 +182,7 @@ export {
 export { Shell } from './shell';
 export { Skeleton } from './skeleton';
 export { Slider } from './slider';
-export { Toaster as Sonner } from './sonner';
+export { Toaster } from './sonner';
 export { Switch } from './switch';
 // export {
 //   Table,

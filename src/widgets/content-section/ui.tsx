@@ -1,19 +1,18 @@
 import { Slot } from '@radix-ui/react-slot';
 import { ArrowRightIcon } from 'lucide-react';
 import Link from 'next/link';
-import * as React from 'react';
 
 import { Button } from '@/shared/ui';
 import { cn } from '@/shared/utils';
 
-interface ContentSectionProps extends React.HTMLAttributes<HTMLDivElement> {
+type Props = React.ComponentProps<'div'> & {
   title: string;
   description?: string;
   href: string;
   linkText?: string;
   children: React.ReactNode;
   asChild?: boolean;
-}
+};
 
 export const ContentSection = ({
   title,
@@ -24,7 +23,7 @@ export const ContentSection = ({
   className,
   asChild = false,
   ...props
-}: ContentSectionProps) => {
+}: Props) => {
   const ChildrenShell = asChild ? Slot : 'div';
 
   return (

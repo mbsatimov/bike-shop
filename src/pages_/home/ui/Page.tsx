@@ -1,5 +1,7 @@
 import { ProductCard } from '@/entities/product/';
 import { StoreCard } from '@/entities/store';
+import { StoreBadge } from '@/entities/store/ui/StoreBadge';
+import { AddToCartButton } from '@/features/product/ui/AddToCartButton';
 import { productData, storeData } from '@/shared/fake-data';
 import { PUBLIC_ROUTES } from '@/shared/router';
 import {
@@ -21,8 +23,9 @@ export const HomePage = () => {
         title="Stores"
         description="Explore stores from around the world"
         linkText="View all stores"
-        href="/stores"
+        href={PUBLIC_ROUTES.stores}
         className="pt-14 md:pt-20 lg:pt-24"
+        asChild
       >
         <Carousel>
           <CarouselContent>
@@ -43,8 +46,9 @@ export const HomePage = () => {
         title="Products"
         description="Find your next favorite product"
         linkText="View all products"
-        href="/products"
+        href={PUBLIC_ROUTES.products}
         className="py-14 md:py-20 lg:py-24"
+        asChild
       >
         <Carousel>
           <CarouselContent>
@@ -53,7 +57,15 @@ export const HomePage = () => {
                 key={product.id}
                 className="md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
               >
-                <ProductCard product={product} />
+                <ProductCard
+                  product={product}
+                  footerSlot={
+                    <div className="block w-full space-y-3">
+                      <StoreBadge store={product.store} />
+                      <AddToCartButton />
+                    </div>
+                  }
+                />
               </CarouselItem>
             ))}
           </CarouselContent>

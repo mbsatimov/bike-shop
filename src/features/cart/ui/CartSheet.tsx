@@ -10,7 +10,7 @@ import {
   SheetTrigger,
 } from '@/shared/ui';
 
-export type CartSheetProps = ComponentProps<typeof Sheet> & {
+type Props = ComponentProps<typeof Sheet> & {
   open?: boolean;
   setOpen?: () => void;
   children?: React.ReactNode;
@@ -23,7 +23,7 @@ export const CartSheet = ({
   children,
   options,
   ...props
-}: CartSheetProps) => {
+}: Props) => {
   return (
     <Sheet open={open} onOpenChange={setOpen} {...props}>
       {!!children && <SheetTrigger asChild>{children}</SheetTrigger>}

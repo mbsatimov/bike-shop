@@ -2,7 +2,7 @@ import type { ComponentProps } from 'react';
 
 import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui';
 
-type CatalogSheetProps = ComponentProps<typeof Popover> & {
+type Props = ComponentProps<typeof Popover> & {
   open?: boolean;
   setOpen?: () => void;
   children?: React.ReactNode;
@@ -15,7 +15,7 @@ export const ProfilePopover = ({
   children,
   options,
   ...props
-}: CatalogSheetProps) => {
+}: Props) => {
   return (
     <Popover open={open} onOpenChange={setOpen} {...props}>
       {!!children && <PopoverTrigger asChild>{children}</PopoverTrigger>}

@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import React from 'react';
 
 import { ThemeProvider } from '@/app/providers';
+import { Toaster } from '@/shared/ui';
 import { cn } from '@/shared/utils';
 
 import '@/app/styles/globals.css';
@@ -22,6 +23,7 @@ export const RootLayout = ({
   <html lang="en" suppressHydrationWarning>
     <body className={cn('min-h-screen', inter.className)}>
       <ThemeProvider>{children}</ThemeProvider>
+      <Toaster />
     </body>
   </html>
 );

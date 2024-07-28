@@ -1,11 +1,11 @@
 import React from 'react';
 
-type ProductPageProps = {
+type Props = {
   params: {
     id: string;
   };
 };
 
-export const ProductPage = ({ params }: ProductPageProps) => {
+export const ProductPage = ({ params }: Props) => {
   return <div>ProductPage {params.id}</div>;
 };
