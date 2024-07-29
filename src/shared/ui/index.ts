@@ -51,6 +51,7 @@ export {
   CommandShortcut,
   CommandSeparator,
 } from './command';
+export { ContentSection } from './content-section';
 export {
   Dialog,
   DialogPortal,

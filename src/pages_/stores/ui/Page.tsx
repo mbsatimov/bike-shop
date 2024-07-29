@@ -1,5 +1,5 @@
 import { Shell } from '@/shared/ui';
-import { StoreList } from '@/widgets/store-list/ui/StoreList';
+import { StoreList } from '@/widgets/store';
 
 export const StoresPage = () => {
   return (

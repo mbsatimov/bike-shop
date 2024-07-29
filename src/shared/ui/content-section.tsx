@@ -8,7 +8,7 @@ import { cn } from '@/shared/utils';
 type Props = React.ComponentProps<'div'> & {
   title: string;
   description?: string;
-  href: string;
+  href?: string;
   linkText?: string;
   children: React.ReactNode;
   asChild?: boolean;
@@ -39,27 +39,18 @@ export const ContentSection = ({
             </p>
           ) : null}
         </div>
-        <Button variant="outline" className="hidden sm:flex" asChild>
-          <Link href={href}>
-            {linkText}
-            <ArrowRightIcon className="ml-2 size-4" aria-hidden="true" />
-            <span className="sr-only"> {linkText}</span>
-          </Link>
-        </Button>
+        {href && (
+          <Button variant="outline" className="hidden sm:flex" asChild>
+            <Link href={href}>
+              {linkText}
+              <ArrowRightIcon className="ml-2 size-4" aria-hidden="true" />
+              <span className="sr-only"> {linkText}</span>
+            </Link>
+          </Button>
+        )}
       </div>
       <div className="space-y-8">
         <ChildrenShell className={cn(!asChild)}>{children}</ChildrenShell>
-        <Button
-          variant="ghost"
-          className="mx-auto flex w-fit sm:hidden"
-          asChild
-        >
-          <Link href={href}>
-            {linkText}
-            <ArrowRightIcon className="ml-2 size-4" aria-hidden="true" />
-            <span className="sr-only"> {linkText}</span>
-          </Link>
-        </Button>
       </div>
     </section>
   );

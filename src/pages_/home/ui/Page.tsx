@@ -1,78 +1,34 @@
-import { ProductCard } from '@/entities/product/';
-import { StoreCard } from '@/entities/store';
-import { StoreBadge } from '@/entities/store/ui/StoreBadge';
-import { AddToCartButton } from '@/features/product/ui/AddToCartButton';
 import { productData, storeData } from '@/shared/fake-data';
 import { PUBLIC_ROUTES } from '@/shared/router';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-  Shell,
-} from '@/shared/ui';
+import { Shell } from '@/shared/ui';
 import { Banner } from '@/widgets/banner';
-import { ContentSection } from '@/widgets/content-section/ui';
+import { ProductSection } from '@/widgets/product';
+import { StoreSection } from '@/widgets/store';
 
-export const HomePage = () => {
+export const HomePage = async () => {
+  await new Promise(resolve => setTimeout(resolve, 3000));
+
   return (
     <Shell>
       <Banner />
-      <ContentSection
+
+      <StoreSection
         title="Stores"
         description="Explore stores from around the world"
         linkText="View all stores"
         href={PUBLIC_ROUTES.stores}
         className="pt-14 md:pt-20 lg:pt-24"
-        asChild
-      >
-        <Carousel>
-          <CarouselContent>
-            {storeData.map(store => (
-              <CarouselItem
-                key={store.id}
-                className="md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
-              >
-                <StoreCard href={PUBLIC_ROUTES.store(store.id)} store={store} />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
-      </ContentSection>
-      <ContentSection
-        title="Products"
+        stores={storeData}
+      />
+
+      <ProductSection
+        title="Popular Products"
         description="Find your next favorite product"
         linkText="View all products"
         href={PUBLIC_ROUTES.products}
         className="py-14 md:py-20 lg:py-24"
-        asChild
-      >
-        <Carousel>
-          <CarouselContent>
-            {productData.map(product => (
-              <CarouselItem
-                key={product.id}
-                className="md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
-              >
-                <ProductCard
-                  product={product}
-                  footerSlot={
-                    <div className="block w-full space-y-3">
-                      <StoreBadge store={product.store} />
-                      <AddToCartButton />
-                    </div>
-                  }
-                />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
-      </ContentSection>
+        products={productData}
+      />
     </Shell>
   );
 };

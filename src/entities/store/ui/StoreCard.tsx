@@ -21,7 +21,7 @@ export const StoreCard = ({ store, href, ...props }: Props) => {
 
   return (
     <Link href={href} {...props}>
-      <Card className="relative h-full rounded-lg transition-colors hover:bg-muted/25">
+      <Card className="relative rounded-lg transition-colors hover:bg-muted/25">
         <CardHeader>
           <CardTitle className="line-clamp-1">{store.name}</CardTitle>
           <CardDescription className="line-clamp-1">
