@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { PlaceholderImage } from '@/shared/ui';
 
 export const Banner = () => (

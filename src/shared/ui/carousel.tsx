@@ -49,7 +49,9 @@ const Carousel = React.forwardRef<
   (
     {
       orientation = 'horizontal',
-      opts,
+      opts = {
+        align: 'start',
+      },
       setApi,
       plugins,
       className,
@@ -206,7 +208,7 @@ const CarouselPrevious = React.forwardRef<
       variant={variant}
       size={size}
       className={cn(
-        'absolute size-10 rounded-full',
+        'absolute hidden size-10 rounded-full md:flex',
         orientation === 'horizontal'
           ? '-left-5 top-1/2 -translate-y-1/2'
           : '-top-5 left-1/2 -translate-x-1/2 rotate-90',
@@ -235,7 +237,7 @@ const CarouselNext = React.forwardRef<
       variant={variant}
       size={size}
       className={cn(
-        'absolute size-10 rounded-full',
+        'absolute hidden size-10 rounded-full md:flex',
         orientation === 'horizontal'
           ? '-right-5 top-1/2 -translate-y-1/2'
           : '-bottom-5 left-1/2 -translate-x-1/2 rotate-90',

@@ -1,22 +1,24 @@
 'use client';
 
 import { Command as CommandPrimitive } from 'cmdk';
-import { Check } from 'lucide-react';
-import { type KeyboardEvent, useCallback, useRef, useState } from 'react';
+import { Search } from 'lucide-react';
+import { useState, useRef, useCallback, type KeyboardEvent } from 'react';
 
 import { cn } from '@/shared/utils';
 
-import { CommandGroup, CommandItem, CommandList } from './command';
-import { Input } from './input';
+import {
+  CommandGroup,
+  CommandItem,
+  CommandList,
+  CommandInput,
+} from './command';
 import { Skeleton } from './skeleton';
 
-export type Option = Record<'value' | 'label', string> & Record<string, string>;
-
 type AutoCompleteProps = {
-  options: Option[];
+  options: string[];
   emptyMessage: string;
-  value?: Option;
-  onValueChange?: (value: Option) => void;
+  value?: string;
+  onValueChange?: (value: string) => void;
   isLoading?: boolean;
   disabled?: boolean;
   placeholder?: string;
@@ -34,8 +36,8 @@ export const AutoComplete = ({
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [isOpen, setOpen] = useState(false);
-  const [selected, setSelected] = useState<Option>(value as Option);
-  const [inputValue, setInputValue] = useState<string>(value?.label || '');
+  const [selected, setSelected] = useState<string>(value as string);
+  const [inputValue, setInputValue] = useState<string>(value || '');
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent<HTMLDivElement>) => {
@@ -51,9 +53,7 @@ export const AutoComplete = ({
 
       // This is not a default behaviour of the <input /> field
       if (event.key === 'Enter' && input.value !== '') {
-        const optionToSelect = options.find(
-          option => option.label === input.value
-        );
+        const optionToSelect = options.find(option => option === input.value);
         if (optionToSelect) {
           setSelected(optionToSelect);
           onValueChange?.(optionToSelect);
@@ -69,12 +69,12 @@ export const AutoComplete = ({
 
   const handleBlur = useCallback(() => {
     setOpen(false);
-    setInputValue(selected?.label);
+    setInputValue(selected);
   }, [selected]);
 
   const handleSelectOption = useCallback(
-    (selectedOption: Option) => {
-      setInputValue(selectedOption.label);
+    (selectedOption: string) => {
+      setInputValue(selectedOption);
 
       setSelected(selectedOption);
       onValueChange?.(selectedOption);
@@ -91,10 +91,10 @@ export const AutoComplete = ({
   return (
     <CommandPrimitive onKeyDown={handleKeyDown}>
       <div>
-        <Input
+        <CommandInput
           ref={inputRef}
           value={inputValue}
-          onChange={event => setInputValue(event.target.value)}
+          onValueChange={isLoading ? undefined : setInputValue}
           onBlur={handleBlur}
           onFocus={() => setOpen(true)}
           placeholder={placeholder}
@@ -102,14 +102,14 @@ export const AutoComplete = ({
           className="text-base"
         />
       </div>
-      <div className="relative mt-1">
+      <div className="relative">
         <div
           className={cn(
-            'absolute top-0 z-10 w-full rounded-xl bg-white outline-none animate-in fade-in-0 zoom-in-95',
+            'absolute top-1 z-10 w-full rounded-xl border bg-background shadow-sm outline-none animate-in fade-in-0 zoom-in-95',
             isOpen ? 'block' : 'hidden'
           )}
         >
-          <CommandList className="rounded-lg ring-1 ring-slate-200">
+          <CommandList className="rounded">
             {isLoading ? (
               <CommandPrimitive.Loading>
                 <div className="p-1">
@@ -119,27 +119,21 @@ export const AutoComplete = ({
             ) : null}
             {options.length > 0 && !isLoading ? (
               <CommandGroup>
-                {options.map(option => {
-                  const isSelected = selected?.value === option.value;
-                  return (
-                    <CommandItem
-                      key={option.value}
-                      value={option.label}
-                      onMouseDown={event => {
-                        event.preventDefault();
-                        event.stopPropagation();
-                      }}
-                      onSelect={() => handleSelectOption(option)}
-                      className={cn(
-                        'flex w-full items-center gap-2',
-                        !isSelected ? 'pl-8' : null
-                      )}
-                    >
-                      {isSelected ? <Check className="w-4" /> : null}
-                      {option.label}
-                    </CommandItem>
-                  );
-                })}
+                {options.map(option => (
+                  <CommandItem
+                    key={option}
+                    value={option}
+                    onMouseDown={event => {
+                      event.preventDefault();
+                      event.stopPropagation();
+                    }}
+                    onSelect={() => handleSelectOption(option)}
+                    className="flex w-full items-center gap-2"
+                  >
+                    <Search className="size-4 text-muted-foreground" />
+                    {option}
+                  </CommandItem>
+                ))}
               </CommandGroup>
             ) : null}
             {!isLoading ? (

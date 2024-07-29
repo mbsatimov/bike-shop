@@ -1,37 +1,26 @@
 'use client';
 
-import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
+import { useSearchParams } from '@/shared/router';
 import { AutoComplete } from '@/shared/ui';
 
 export const SearchAutoComplete = () => {
-  const [value, setValue] = useState<{ value: string; label: string }>({
-    value: '',
-    label: '',
-  });
+  const { getParam } = useSearchParams();
+  const router = useRouter();
+  const query = getParam('query') || undefined;
+
+  const onSelect = (value: string) => {
+    router.push(`/search?query=${value}`);
+  };
 
   return (
-    <div>
-      <AutoComplete
-        options={[
-          {
-            value: 'bike1',
-            label: 'Bike 1',
-          },
-          {
-            value: 'bike2',
-            label: 'Bike 2',
-          },
-          {
-            value: 'bike3',
-            label: 'Bike 3',
-          },
-        ]}
-        emptyMessage="No resulsts."
-        placeholder="Find something"
-        onValueChange={setValue}
-        value={value}
-      />
-    </div>
+    <AutoComplete
+      options={['Category 1', 'Category 2', 'Category 3', 'Category 4']}
+      emptyMessage="No resulsts."
+      placeholder="Find something"
+      onValueChange={onSelect}
+      value={query}
+    />
   );
 };
