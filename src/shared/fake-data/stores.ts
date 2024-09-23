@@ -8,6 +8,13 @@ export const storeData: Store[] = [
     productCount: 10,
     orderCount: 4,
     customerCount: 4,
+    rating: 4.5,
+    ratingCount: 100,
+    hasDelivery: true,
+    deliveryTime: {
+      min: 10,
+      max: 20,
+    },
   },
   {
     id: '2',
@@ -16,6 +23,13 @@ export const storeData: Store[] = [
     productCount: 30,
     orderCount: 10,
     customerCount: 8,
+    rating: 5,
+    ratingCount: 10,
+    hasDelivery: true,
+    deliveryTime: {
+      min: 10,
+      max: 20,
+    },
   },
   {
     id: '3',
@@ -24,6 +38,13 @@ export const storeData: Store[] = [
     productCount: 32,
     orderCount: 12,
     customerCount: 4,
+    rating: 5,
+    ratingCount: 10,
+    hasDelivery: true,
+    deliveryTime: {
+      min: 10,
+      max: 20,
+    },
   },
   {
     id: '4',
@@ -32,6 +53,13 @@ export const storeData: Store[] = [
     productCount: 32,
     orderCount: 12,
     customerCount: 4,
+    rating: 3.4,
+    ratingCount: 100,
+    hasDelivery: true,
+    deliveryTime: {
+      min: 10,
+      max: 20,
+    },
   },
   {
     id: '5',
@@ -40,5 +68,12 @@ export const storeData: Store[] = [
     productCount: 32,
     orderCount: 12,
     customerCount: 4,
+    rating: 5,
+    ratingCount: 10,
+    hasDelivery: true,
+    deliveryTime: {
+      min: 10,
+      max: 20,
+    },
   },
 ];

@@ -17,33 +17,55 @@ type Props = Omit<
   'children' | 'asChild'
 > & {
   products: Product[];
+  view?: 'carousel' | 'grid';
 };
 
-export const ProductSection = ({ products, ...props }: Props) => {
+export const ProductSection = ({
+  products,
+  view = 'carousel',
+  ...props
+}: Props) => {
   return (
     <ContentSection {...props} asChild>
-      <Carousel>
-        <CarouselContent>
+      {view === 'grid' ? (
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-4">
           {products.map(product => (
-            <CarouselItem
+            <ProductCard
               key={product.id}
-              className="md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
-            >
-              <ProductCard
-                product={product}
-                footerSlot={
-                  <div className="block w-full space-y-3">
-                    <StoreBadge store={product.store} />
-                    <AddToCartButton />
-                  </div>
-                }
-              />
-            </CarouselItem>
+              product={product}
+              footerSlot={
+                <div className="block w-full space-y-3">
+                  <StoreBadge store={product.store} />
+                  <AddToCartButton />
+                </div>
+              }
+            />
           ))}
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
+        </div>
+      ) : (
+        <Carousel>
+          <CarouselContent>
+            {products.map(product => (
+              <CarouselItem
+                key={product.id}
+                className="md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+              >
+                <ProductCard
+                  product={product}
+                  footerSlot={
+                    <div className="block w-full space-y-3">
+                      <StoreBadge store={product.store} />
+                      <AddToCartButton />
+                    </div>
+                  }
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      )}
     </ContentSection>
   );
 };

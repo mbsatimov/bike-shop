@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { StoreCard } from '@/entities/store';
-import { storeData } from '@/shared/fake-data';
+import { productData, storeData } from '@/shared/fake-data';
 import { PUBLIC_ROUTES } from '@/shared/router';
 import {
   Carousel,
@@ -50,7 +50,7 @@ export const SearchPage = async ({
         className="pt-14 md:pt-20 lg:pt-24"
         asChild
       >
-        <ProductList />
+        <ProductList products={productData} />
       </ContentSection>
     </Shell>
   );

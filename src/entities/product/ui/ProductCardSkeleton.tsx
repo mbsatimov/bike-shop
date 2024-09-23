@@ -24,7 +24,7 @@ export const ProductCardSkeleton = ({ footerSlot, ...props }: Props) => {
       </CardHeader>
       <CardContent className="space-y-1.5 p-4">
         <CardTitle>
-          <Skeleton className="h-7 w-32" />
+          <Skeleton className="h-7 w-3/4" />
         </CardTitle>
         <CardDescription>
           <Skeleton className="h-4 w-28" />

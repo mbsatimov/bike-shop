@@ -1,6 +1,10 @@
 {
-  //https://www.npmjs.com/package/eslint-plugin-boundaries
-  "extends": "prettier",
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "next",
+    "next/core-web-vitals"
+  ],
   "overrides": [
     {
       "files": ["src/public/**/*.js"],
@@ -10,7 +14,6 @@
       "files": ["src/**/*.{js,mjs,ts,tsx,mdx}"],
       "env": { "es6": true, "node": true },
       "plugins": ["import"],
-      "extends": ["eslint:recommended", "next", "next/core-web-vitals"],
       "rules": {
         "import/order": [
           "error",

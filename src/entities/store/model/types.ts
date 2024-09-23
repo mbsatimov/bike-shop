@@ -11,5 +11,12 @@ export interface Store {
   description?: string;
   productCount: number;
   orderCount: number;
+  rating: number;
+  hasDelivery: boolean;
+  deliveryTime: {
+    min: number;
+    max: number;
+  };
+  ratingCount: number;
   customerCount: number;
 }

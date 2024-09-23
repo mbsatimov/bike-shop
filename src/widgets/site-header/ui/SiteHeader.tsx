@@ -1,4 +1,5 @@
 import { ShoppingBasket, User2 } from 'lucide-react';
+import { Suspense } from 'react';
 
 import { CatalogSheet } from '@/entities/catalog';
 import { ProfilePopover } from '@/features/account';
@@ -21,7 +22,9 @@ export const SiteHeader = () => (
       </div>
 
       <div className="flex items-center space-x-4">
-        <SearchAutoComplete />
+        <Suspense fallback={null}>
+          <SearchAutoComplete />
+        </Suspense>
 
         <div className="hidden md:block">
           <CartSheet>
